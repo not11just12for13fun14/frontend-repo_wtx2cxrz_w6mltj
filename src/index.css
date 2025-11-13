@@ -22,6 +22,61 @@
   }
 }
 
+/* Uiverse.io switch styles (adapted) */
+@layer components {
+  .ui-switch {
+    --switch-h: 28px;
+    --switch-w: 52px;
+    --switch-p: 3px;
+    --switch-bg: theme(colors.gray.200);
+    --switch-bg-dark: theme(colors.neutral.700);
+    --switch-circle: #fff;
+    --switch-on: theme(colors.emerald.500);
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+  }
+  .ui-switch > input {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  .ui-switch .slider {
+    width: var(--switch-w);
+    height: var(--switch-h);
+    border-radius: 9999px;
+    background: var(--switch-bg);
+    display: inline-flex;
+    align-items: center;
+    padding: var(--switch-p);
+    transition: background 200ms ease;
+    box-shadow: inset 0 1px 2px rgba(0,0,0,0.06);
+  }
+  .dark .ui-switch .slider {
+    background: var(--switch-bg-dark);
+    box-shadow: inset 0 1px 2px rgba(0,0,0,0.25);
+  }
+  .ui-switch .circle {
+    width: calc(var(--switch-h) - var(--switch-p) * 2);
+    height: calc(var(--switch-h) - var(--switch-p) * 2);
+    border-radius: 50%;
+    background: var(--switch-circle);
+    transform: translateX(0);
+    transition: transform 200ms ease, box-shadow 200ms ease;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  }
+  .ui-switch > input:checked + .slider {
+    background: var(--switch-on);
+  }
+  .ui-switch > input:checked + .slider .circle {
+    transform: translateX(calc(var(--switch-w) - var(--switch-h)));
+    box-shadow: 0 2px 10px rgba(0,0,0,0.25);
+  }
+}
+
 /* Custom utility classes for shadcn/ui patterns */
 @layer utilities {
   .animate-in {
